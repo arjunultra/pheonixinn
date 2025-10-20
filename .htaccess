@@ -1,0 +1,22 @@
+#ERROR 404 PAGE
+ErrorDocument 404 /404.html
+
+# RewriteEngine On
+# RewriteCond %{SERVER_PORT} 80
+# RewriteCond %{HTTP_HOST} ^(www\.)?tiruchendurkumarancabs\.com [NC]
+# RewriteRule ^(.*)$ https://www.tiruchendurkumarancabs.com/$1 [R=301,L]
+
+### Redirect non-www => www ###
+# RewriteCond %{HTTP_HOST} !^www.tiruchendurkumarancabs.com$ [NC]
+# RewriteRule ^(.*)$ https://www.tiruchendurkumarancabs.com/$1 [L,R=301]
+
+### Redirect index to www.tiruchendurkumarancabs.com ###
+# RewriteCond %{THE_REQUEST} ^.*/index\.php
+# RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+
+# Extra Security Headers
+<IfModule mod_headers.c>
+Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-Content-Type-Options nosnif
+</IfModule>
